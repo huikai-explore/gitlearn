@@ -62,7 +62,7 @@ github>setting>Developper settings>Personal Access Tokens>classic tokens
 git push -u origin main
 -u选项是为了关联本地和远程的mian分支，第二次执行可以不加
 6.查看本地和远程分支
-git brunch -a
+git branch -a
 
 使用SSH长传本地版本库：
 1.配置本地SSH Key
@@ -72,6 +72,8 @@ ssh-keygen -t rsa -C "youremail@example.com"
 git remote add origin2 SSH-URL
 4.使用SSH上传本地版本库到github远程版本库
 git push -u origin2 main
+5.切换本地main关联到远程库origin/main
+git branch --set-upstream-to=origin/main main
 
 删除关联的远程版本库：
 1.先查看当前连接的远程版本库
