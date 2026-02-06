@@ -1,0 +1,82 @@
+创建版本库：
+git init
+
+向版本库添加文件：
+git add readme.txt
+
+把文件提交到仓库：
+git commit -m "wrote a readme file"
+
+查看仓库当前的状态：
+git status
+
+查看文件修改了什么：
+git diff readme.txt
+
+查看日志：
+git log --pretty=oneline
+
+回退到上一个版本：
+git reset --hard HEAD^
+
+回退到上上一个版本：
+git reset --hard HEAD^^
+
+回退到指定版本：
+git reset --hard commit_id
+
+查询之前的版本对应的commit_id:
+git reflog
+
+丢弃工作区的修改，撤销修改以回到git commit或git add之前的状态：
+git checkout -- readme.txt
+
+不小心git add了，那么第一步丢弃暂存区的修改，把暂存区的修改回退到工作区：
+git reset HEAD readme.txt
+第二步丢弃工作区的修改：
+git checkout -- readme.txt
+
+注：git check -- filename其实就是把版本库的版本覆盖到工作区
+
+在工作区删除文件:
+rm readme.txt
+从版本库中回退工作区中被误删的文件：
+git checkout -- "readme.txt"
+
+在版本库中删除文件,：
+git rm readme.txt
+git commit -m "remove readme.txt"
+从commit_id回退版本库中被误删的文件：
+git reset --hard commit_id
+
+上传本机版本库到github版本库：
+1.在当前目录下关联远程库
+git remote add origin URL
+2.查看当前远程库版本
+git remote -v
+3.重命名当前分支为main
+git branch -M main
+4.设置github私有密钥
+github>setting>Developper settings>Personal Access Tokens>classic tokens
+5.使用账户名和密钥上传本地版本库到github远程版本库
+git push -u origin main
+-u选项是为了关联本地和远程的mian分支，第二次执行可以不加
+6.查看本地和远程分支
+git brunch -a
+
+使用SSH长传本地版本库：
+1.配置本地SSH Key
+ssh-keygen -t rsa -C "youremail@example.com"
+2.将~/.ssh/id_rsa.pub添加（复制内容）到远程仓库（比如github）的SSH Key
+3.在当前目录关联远程库
+git remote add origin2 SSH-URL
+4.使用SSH上传本地版本库到github远程版本库
+git push -u origin2 main
+
+删除关联的远程版本库：
+1.先查看当前连接的远程版本库
+git remote -v
+2.删除
+git remote rm origin
+
+注：该处的删除只是解除了本地版本库与github远程版本库的绑定关系，github版本库需要手动在github网页进行删除
